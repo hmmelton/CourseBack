@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hmmelton.textrack.R;
 import com.parse.ParseFile;
@@ -43,7 +44,7 @@ public class AddBookDialog extends DialogFragment {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(view);
         builder.setPositiveButton(android.R.string.ok, (dialog, which) ->
-                        addNewBook(builder))
+                        addNewBook())
                 .setNegativeButton(android.R.string.cancel, (dialog, which) ->
                         AddBookDialog.this.getDialog().cancel());
         return builder.create();
@@ -70,9 +71,8 @@ public class AddBookDialog extends DialogFragment {
     /**
      * This method gathers all information required to create a new Book object and save it to the
      * database.
-     * @param builder
      */
-    private void addNewBook(AlertDialog.Builder builder) {
+    private void addNewBook() {
         String title = getBookInfo(R.id.add_book_title);
 
         String course = getBookInfo(R.id.add_book_course);
@@ -91,7 +91,10 @@ public class AddBookDialog extends DialogFragment {
         book.put("price", price);
         book.put("owner", ParseUser.getCurrentUser());
         book.put("image", new ParseFile(bitmapToByteArray()));
-        book.saveInBackground();
+        book.saveInBackground(e -> {
+            Toast.makeText(getActivity(), getResources().getString(R.string.book_saved),
+                    Toast.LENGTH_SHORT).show();
+        });
     }
 
     /**

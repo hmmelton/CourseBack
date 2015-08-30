@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/add_book_header"
         android:hint="@string/title"
+        android:inputType="textCapWords"
         android:paddingLeft="@dimen/activity_horizontal_margin"/>
 
     <EditText
@@ -46,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/add_book_edition"
+        android:inputType="textCapWords"
         android:hint="@string/course"
         android:paddingLeft="@dimen/activity_horizontal_margin"/>
 

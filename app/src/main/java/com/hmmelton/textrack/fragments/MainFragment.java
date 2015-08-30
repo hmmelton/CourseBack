@@ -1,4 +1,4 @@
-package fragments;
+package com.hmmelton.textrack.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

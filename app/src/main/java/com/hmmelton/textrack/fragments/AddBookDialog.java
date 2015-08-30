@@ -1,4 +1,4 @@
-package fragments;
+package com.hmmelton.textrack.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;

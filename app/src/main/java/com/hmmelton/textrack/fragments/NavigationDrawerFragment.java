@@ -1,4 +1,4 @@
-package fragments;
+package com.hmmelton.textrack.fragments;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -102,11 +102,7 @@ public class NavigationDrawerFragment extends Fragment {
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                new String[]{
-                        getString(R.string.my_library),
-                        getString(R.string.my_saved_books),
-                        getString(R.string.payment_history),
-                }));
+                getResources().getStringArray(R.array.nav_drawer_list)));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }

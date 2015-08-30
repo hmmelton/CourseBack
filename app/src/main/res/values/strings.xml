@@ -35,9 +35,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_icon_description">NavDrawer opener</string>
 
-    <string name="my_library">My Library</string>
-    <string name="my_saved_books">Saved Books</string>
-    <string name="payment_history">Payment History</string>
+    <!-- Titles for list in NavDrawer -->
+    <string-array name="nav_drawer_list">
+        <item>Marketplace</item>
+        <item>My Library</item>
+        <item>Saved Books</item>
+        <item>Payment History</item>
+    </string-array>
 
 
 </resources>

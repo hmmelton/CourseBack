@@ -11,8 +11,8 @@ import android.view.MenuItem;
 
 import com.parse.ParseUser;
 
-import fragments.MainFragment;
-import fragments.NavigationDrawerFragment;
+import com.hmmelton.textrack.fragments.MainFragment;
+import com.hmmelton.textrack.fragments.NavigationDrawerFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
+        // update the main content by replacing com.hmmelton.textrack.fragments
 
     }
 

@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, SignInActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
+            finish(); // removes activity from backstack
             overridePendingTransition(0,0); // used to prevent animation between activities
         }
     }

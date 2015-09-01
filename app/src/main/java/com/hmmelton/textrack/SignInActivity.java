@@ -1,14 +1,21 @@
 package com.hmmelton.textrack;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.hmmelton.textrack.utils.SignInTitleAnimation;
 import com.parse.ParseFacebookUtils;
 
@@ -17,35 +24,54 @@ import java.util.Arrays;
 
 public class SignInActivity extends AppCompatActivity {
 
-    private final int ANIM_DURATION = 500;
+    private final String TAG = "SignInActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
+        FacebookSdk.sdkInitialize(this);
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+
         fadeInTitle();
 
         // FB sign in button
-        Button signInBtn = (Button) findViewById(R.id.facebook_login_button);
-        signInBtn.setOnClickListener(v -> {
+        LoginButton signInBtn = (LoginButton) findViewById(R.id.facebook_login_button);
+        setImageSize(signInBtn);
+        signInBtn.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
+        signInBtn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.e(TAG, AccessToken.getCurrentAccessToken().getUserId());
+            }
 
-                ParseFacebookUtils.logInWithReadPermissionsInBackground(SignInActivity.this,
-                        Arrays.asList("public_profile", "user_friends", "email"),
-                        (user, e) -> {
+            @Override
+            public void onCancel() {
+                Log.e(TAG, "onCancel");
+            }
 
-                            if (user == null) {
-                                Toast.makeText(SignInActivity.this,
-                                        getString(R.string.null_user), Toast.LENGTH_SHORT).show();
-                            } else {
-                                // navigate to MainActivity
-                                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                                        Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                            }
-                        });
+            @Override
+            public void onError(FacebookException e) {
+                Log.e(TAG, "onError");
+            }
         });
+        /*
+        ParseFacebookUtils.logInWithReadPermissionsInBackground(SignInActivity.this,
+                Arrays.asList("public_profile", "user_friends", "email"),
+                (user, e) -> {
+
+                    if (user == null) {
+                        Toast.makeText(SignInActivity.this,
+                                getString(R.string.null_user), Toast.LENGTH_SHORT).show();
+                    } else {
+                        // navigate to MainActivity
+                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });*/
     }
 
     @Override
@@ -85,5 +111,17 @@ public class SignInActivity extends AppCompatActivity {
 
         fadeIn.setDuration(3000);
         title.startAnimation(fadeIn);
+    }
+
+    /**
+     * This method scales the image on the Facebook login button.
+     * @param button button whose image is scaled
+     */
+    private void setImageSize(LoginButton button) {
+        float fbIconScale = 1.45F;
+        Drawable drawable = getResources().getDrawable(com.facebook.R.drawable.com_facebook_button_icon);
+        drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth()*fbIconScale),
+                (int)(drawable.getIntrinsicHeight()*fbIconScale));
+        button.setCompoundDrawables(drawable, null, null, null);
     }
 }

@@ -35,7 +35,7 @@ public class AddBookDialog extends DialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.add_book_layout, null);
+        View view = inflater.inflate(R.layout.add_book_layout, null, false);
 
         ((TextView) view.findViewById(R.id.add_book_image)).setOnClickListener(v ->
                 dispatchTakePictureIntent());

@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hmmelton.textrack.MainActivity;
 import com.hmmelton.textrack.R;
+import com.hmmelton.textrack.TextRackApplication;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -37,7 +39,7 @@ public class AddBookDialog extends DialogFragment {
 
         View view = inflater.inflate(R.layout.add_book_layout, null, false);
 
-        ((TextView) view.findViewById(R.id.add_book_image)).setOnClickListener(v ->
+        view.findViewById(R.id.add_book_image).setOnClickListener(v ->
                 dispatchTakePictureIntent());
 
         // Inflate and set the layout for the dialog
@@ -91,10 +93,7 @@ public class AddBookDialog extends DialogFragment {
         book.put("price", price);
         book.put("owner", ParseUser.getCurrentUser());
         book.put("image", new ParseFile(bitmapToByteArray()));
-        book.saveInBackground(e -> {
-            Toast.makeText(getActivity(), getResources().getString(R.string.book_saved),
-                    Toast.LENGTH_SHORT).show();
-        });
+        book.saveInBackground();
     }
 
     /**

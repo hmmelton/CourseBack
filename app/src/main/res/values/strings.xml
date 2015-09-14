@@ -28,6 +28,7 @@
     <!-- SignIn Screen -->
     <string name="fb_login">Login with Facebook</string>
     <string name="null_user">Login failed</string>
+    <string name="sign_in_error">error signing in</string>
 
     <!-- NavigationDrawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>

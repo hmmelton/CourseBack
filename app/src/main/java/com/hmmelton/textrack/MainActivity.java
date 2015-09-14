@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.parse.ParseUser;
 
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, MainFragment.newInstance())
                 .commit();
+
+        mProgressBar = (ProgressBar) findViewById(R.id.main_progress_bar);
     }
 
     @Override
@@ -89,6 +95,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_settings:
                 break;
             case R.id.action_logout:
+                mProgressBar.setVisibility(View.VISIBLE);
                 ParseUser.logOut();
                 isUserSignedIn();
                 break;

@@ -111,8 +111,7 @@ public class MainActivity extends AppCompatActivity
      * will be directed to the sign in page.
      */
     private void isUserSignedIn() {
-        ParseUser user = ParseUser.getCurrentUser();
-        if (user == null) {
+        if (ParseUser.getCurrentUser() == null) {
             Intent intent = new Intent(this, SignInActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);

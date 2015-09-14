@@ -53,7 +53,6 @@ public class SignInActivity extends AppCompatActivity {
                                 try {
                                     user.put("name", jsonObject.getString("name"));
                                     user.setEmail(jsonObject.getString("email"));
-                                    ParseUser.getCurrentUser().put("name", jsonObject.getString("name"));
                                     logIn();
                                 } catch (JSONException e1) {
                                     Toast.makeText(SignInActivity.this,

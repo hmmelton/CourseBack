@@ -25,7 +25,11 @@ import com.parse.ParseUser;
  */
 public class MainFragment extends android.support.v4.app.Fragment {
 
+    @SuppressWarnings("unused")
+    private final String TAG = "MainFragment";
+
     private ProgressBar mProgressBar;
+    private RecyclerView mContent;
 
     public MainFragment() {
 
@@ -41,14 +45,14 @@ public class MainFragment extends android.support.v4.app.Fragment {
         View mainView = inflater.inflate(R.layout.fragment_main, container, false);
         setHasOptionsMenu(true);
 
+        mProgressBar = (ProgressBar) mainView.findViewById(R.id.main_progress_bar);
+
         // initialize main RecyclerView
-        final RecyclerView recycler = (RecyclerView) mainView.findViewById(R.id.bookList);
-        setRecyclerView(recycler);
+        mContent = (RecyclerView) mainView.findViewById(R.id.bookList);
+        setRecyclerView();
+        setAdapter();
 
-        ParseQuery<ParseObject> query = new ParseQuery<>("Book");
-        query.findInBackground(((objects, e) ->
-            recycler.setAdapter(new BookListAdapter(objects))));
-
+        // initialize FloatingActionButton used to add cards to the database
         final FloatingActionButton fab = (FloatingActionButton) mainView.findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
             AddBookDialog fragment = new AddBookDialog();
@@ -60,18 +64,17 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
     /**
      * This method initializes the passed RecyclerView.
-     * @param recycler view to be initialized
      */
-    private void setRecyclerView(RecyclerView recycler) {
-        recycler.setHasFixedSize(true);
+    private void setRecyclerView() {
+        mContent.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity() );
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recycler.setLayoutManager(llm);
+        mContent.setLayoutManager(llm);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.global, menu);
+        inflater.inflate(R.menu.menu_main, menu);
 
     }
 
@@ -82,7 +85,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_settings:
                 break;
@@ -92,11 +94,24 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 Authentication.isUserSignedIn(getActivity());
                 break;
             case R.id.action_refresh:
+                setAdapter();
                 break;
             default:
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * This method sets the adapter for the View containing books available for sale.
+     */
+    private void setAdapter() {
+        mProgressBar.setVisibility(View.VISIBLE);
+        ParseQuery<ParseObject> query = new ParseQuery<>("Book");
+        query.findInBackground(((objects, e) -> {
+            mContent.setAdapter(new BookListAdapter(objects));
+            mProgressBar.setVisibility(View.GONE);
+        }));
     }
 }

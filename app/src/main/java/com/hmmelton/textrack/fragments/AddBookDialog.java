@@ -7,21 +7,13 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.hmmelton.textrack.MainActivity;
 import com.hmmelton.textrack.R;
-import com.hmmelton.textrack.TextRackApplication;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-
-import java.io.ByteArrayOutputStream;
 
 /**
  * Created by harrison on 7/12/15.
@@ -39,9 +31,6 @@ public class AddBookDialog extends DialogFragment {
 
         View view = inflater.inflate(R.layout.add_book_layout, null, false);
 
-        view.findViewById(R.id.add_book_image).setOnClickListener(v ->
-                dispatchTakePictureIntent());
-
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(view);
@@ -57,16 +46,6 @@ public class AddBookDialog extends DialogFragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             Bundle extras = data.getExtras();
             mImageBytes = (Bitmap) extras.get("data");
-        }
-    }
-
-    /**
-     * This method opens the device's camera for the user to take a picture of his/her book.
-     */
-    private void dispatchTakePictureIntent() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
@@ -92,18 +71,7 @@ public class AddBookDialog extends DialogFragment {
         book.put("edition", edition);
         book.put("price", price);
         book.put("owner", ParseUser.getCurrentUser());
-        book.put("image", new ParseFile(bitmapToByteArray()));
         book.saveInBackground();
-    }
-
-    /**
-     * This method converts an Bitmap to a byte array, allowing the image to be stored in Parse.
-     * @return byte array of image data
-     */
-    private byte[] bitmapToByteArray() {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        mImageBytes.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        return stream.toByteArray();
     }
 
     /**

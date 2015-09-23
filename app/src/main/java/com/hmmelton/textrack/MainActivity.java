@@ -5,10 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
-import com.hmmelton.textrack.utils.Authentication;
-
 import com.hmmelton.textrack.fragments.MainFragment;
 import com.hmmelton.textrack.fragments.NavigationDrawerFragment;
+import com.hmmelton.textrack.utils.Authentication;
 
 
 public class MainActivity extends AppCompatActivity
@@ -23,6 +22,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);

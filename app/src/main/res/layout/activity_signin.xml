@@ -11,11 +11,14 @@
         android:background="@android:color/darker_gray"
         android:alpha="0.5" />
 
-    <com.facebook.login.widget.LoginButton
+    <Button
         android:id="@+id/facebook_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/facebook_blue"
+        android:text="@string/fb_login"
         android:textSize="16sp"
+        android:textColor="@android:color/white"
         android:paddingLeft="@dimen/button_padding"
         android:paddingRight="@dimen/button_padding"
         android:paddingTop="@dimen/activity_vertical_margin"

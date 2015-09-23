@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <View
         android:id="@+id/bg_image"
+        android:background="@color/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/books"
+        android:layout_height="100dp"
         android:scaleType="centerCrop"/>
 
     <RelativeLayout

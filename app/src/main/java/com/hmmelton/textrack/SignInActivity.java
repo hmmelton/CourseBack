@@ -50,6 +50,7 @@ public class SignInActivity extends AppCompatActivity {
                         ((jsonObject, graphResponse) ->
                             ParseFacebookUtils.logInInBackground(loginResult.getAccessToken(), ((user, e) -> {
                                 try {
+                                    TextRackApplication.setFacebookId(jsonObject.getString("id"));
                                     user.put("name", jsonObject.getString("name"));
                                     user.setEmail(jsonObject.getString("email"));
                                     logIn();

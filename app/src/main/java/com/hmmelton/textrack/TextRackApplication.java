@@ -11,6 +11,7 @@ import com.parse.ParseFacebookUtils;
 public class TextRackApplication extends Application {
 
     private static TextRackApplication instance;
+    private static String fbId;
 
     @Override
     public void onCreate() {
@@ -23,5 +24,13 @@ public class TextRackApplication extends Application {
 
     public static TextRackApplication getInstance() {
         return instance;
+    }
+
+    public static String getFacebookId() {
+        return fbId;
+    }
+
+    public static void setFacebookId(String id) {
+        fbId = id;
     }
 }

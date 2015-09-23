@@ -1,7 +1,5 @@
 package com.hmmelton.textrack.adapters;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +7,6 @@ import android.view.ViewGroup;
 
 import com.hmmelton.textrack.R;
 import com.hmmelton.textrack.views.BookCellViewHolder;
-import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 import java.util.List;
@@ -44,14 +40,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookCellViewHolder> {
         holder.title.setText(book.getString("title"));
         holder.course.setText(book.getString("course"));
         holder.price.setText("$" + book.getString("price"));
-        ParseFile imageFile = book.getParseFile("image");
-        try {
-            byte[] imageData = imageFile.getData();
-            Bitmap bmp = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-            holder.image.setImageBitmap(bmp);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

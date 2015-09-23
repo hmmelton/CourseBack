@@ -38,7 +38,6 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
 
         FacebookSdk.sdkInitialize(this);
-        CallbackManager callbackManager = CallbackManager.Factory.create();
 
         fadeInTitle();
 

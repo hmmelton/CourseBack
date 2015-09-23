@@ -28,6 +28,7 @@
     <string name="book_saved">Book uploaded successfully</string>
 
     <!-- SignIn Screen -->
+    <string name="fb_login">Login with Facebook</string>
     <string name="null_user">Login failed</string>
     <string name="sign_in_error">error signing in</string>
 

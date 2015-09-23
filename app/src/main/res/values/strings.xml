@@ -26,6 +26,7 @@
     <string name="edition">edition</string>
     <string name="take_picture">take picture</string>
     <string name="book_saved">Book uploaded successfully</string>
+    <string name="book_failure">Failed to upload book</string>
 
     <!-- SignIn Screen -->
     <string name="fb_login">Login with Facebook</string>

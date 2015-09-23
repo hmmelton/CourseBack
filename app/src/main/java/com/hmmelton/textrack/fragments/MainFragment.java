@@ -28,8 +28,8 @@ public class MainFragment extends android.support.v4.app.Fragment {
     @SuppressWarnings("unused")
     private final String TAG = "MainFragment";
 
-    private ProgressBar mProgressBar;
-    private RecyclerView mContent;
+    private static ProgressBar mProgressBar;
+    private static RecyclerView mContent;
 
     public MainFragment() {
 
@@ -111,6 +111,24 @@ public class MainFragment extends android.support.v4.app.Fragment {
         ParseQuery<ParseObject> query = new ParseQuery<>("Book");
         query.findInBackground(((objects, e) -> {
             mContent.setAdapter(new BookListAdapter(objects));
+            mProgressBar.setVisibility(View.GONE);
+        }));
+    }
+
+    /**
+     * This method adds new books to the
+     */
+    public static void updateAdapter() {
+        // get adapter of current list
+        BookListAdapter adapter = ((BookListAdapter) mContent.getAdapter());
+
+        mProgressBar.setVisibility(View.VISIBLE);
+        // query for new books
+        ParseQuery<ParseObject> query = new ParseQuery<>("Book");
+        query.findInBackground(((objects, e) -> {
+            adapter.clear();
+            adapter.addAll(objects);
+            adapter.notifyDataSetChanged();
             mProgressBar.setVisibility(View.GONE);
         }));
     }

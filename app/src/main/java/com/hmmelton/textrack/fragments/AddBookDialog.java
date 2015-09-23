@@ -7,11 +7,14 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.hmmelton.textrack.R;
+import com.hmmelton.textrack.TextRackApplication;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -19,6 +22,8 @@ import com.parse.ParseUser;
  * Created by harrison on 7/12/15.
  */
 public class AddBookDialog extends DialogFragment {
+
+    private final String TAG = "AddBookDialog";
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private Bitmap mImageBytes;
@@ -71,7 +76,17 @@ public class AddBookDialog extends DialogFragment {
         book.put("edition", edition);
         book.put("price", price);
         book.put("owner", ParseUser.getCurrentUser());
-        book.saveInBackground();
+        book.saveInBackground(e -> {
+            if (e != null) {
+                Log.e(TAG, "error: ", e);
+                Toast.makeText(TextRackApplication.getInstance(),
+                        R.string.book_failure, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(TextRackApplication.getInstance(),
+                        R.string.book_saved, Toast.LENGTH_SHORT).show();
+                MainFragment.updateAdapter();
+            }
+        });
     }
 
     /**

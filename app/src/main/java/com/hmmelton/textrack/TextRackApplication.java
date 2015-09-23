@@ -10,10 +10,18 @@ import com.parse.ParseFacebookUtils;
  */
 public class TextRackApplication extends Application {
 
+    private static TextRackApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
         Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
         ParseFacebookUtils.initialize(this);
+
+        instance = this;
+    }
+
+    public static TextRackApplication getInstance() {
+        return instance;
     }
 }

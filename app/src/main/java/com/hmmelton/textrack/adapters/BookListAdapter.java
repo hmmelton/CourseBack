@@ -46,4 +46,19 @@ public class BookListAdapter extends RecyclerView.Adapter<BookCellViewHolder> {
     public int getItemCount() {
         return bookList.size();
     }
+
+    /**
+     * This method clears the current list of books.
+     */
+    public void clear() {
+        bookList.clear();
+    }
+
+    /**
+     * This method adds all items in the parameter to the current list of books.
+     * @param books books to be added to list
+     */
+    public void addAll(List<ParseObject> books) {
+        bookList.addAll(books);
+    }
 }

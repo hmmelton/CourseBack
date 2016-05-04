@@ -1,4 +1,4 @@
-package com.hmmelton.textrack.fragments;
+package com.hmmelton.courseback.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,8 +13,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.hmmelton.textrack.R;
-import com.hmmelton.textrack.TextRackApplication;
+import com.hmmelton.courseback.R;
+import com.hmmelton.courseback.TextRackApplication;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 

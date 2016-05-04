@@ -1,4 +1,4 @@
-package com.hmmelton.textrack.fragments;
+package com.hmmelton.courseback.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.hmmelton.textrack.R;
-import com.hmmelton.textrack.adapters.BookListAdapter;
-import com.hmmelton.textrack.utils.Authentication;
+import com.hmmelton.courseback.R;
+import com.hmmelton.courseback.adapters.BookListAdapter;
+import com.hmmelton.courseback.utils.Authentication;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;

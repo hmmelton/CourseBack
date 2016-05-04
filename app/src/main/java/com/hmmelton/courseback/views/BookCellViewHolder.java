@@ -1,10 +1,10 @@
-package com.hmmelton.textrack.views;
+package com.hmmelton.courseback.views;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hmmelton.textrack.R;
+import com.hmmelton.courseback.R;
 
 /**
  * Created by harrison on 7/12/15.

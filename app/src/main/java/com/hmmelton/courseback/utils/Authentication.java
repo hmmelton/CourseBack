@@ -1,9 +1,9 @@
-package com.hmmelton.textrack.utils;
+package com.hmmelton.courseback.utils;
 
 import android.app.Activity;
 import android.content.Intent;
 
-import com.hmmelton.textrack.SignInActivity;
+import com.hmmelton.courseback.SignInActivity;
 import com.parse.ParseUser;
 
 /**

@@ -1,12 +1,12 @@
-package com.hmmelton.textrack.adapters;
+package com.hmmelton.courseback.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hmmelton.textrack.R;
-import com.hmmelton.textrack.views.BookCellViewHolder;
+import com.hmmelton.courseback.R;
+import com.hmmelton.courseback.views.BookCellViewHolder;
 import com.parse.ParseObject;
 
 import java.util.List;

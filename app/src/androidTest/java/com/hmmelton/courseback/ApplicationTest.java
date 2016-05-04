@@ -1,4 +1,4 @@
-package com.hmmelton.textrack;
+package com.hmmelton.courseback;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

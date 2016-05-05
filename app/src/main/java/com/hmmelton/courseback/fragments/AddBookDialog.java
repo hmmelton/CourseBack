@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hmmelton.courseback.R;
-import com.hmmelton.courseback.TextRackApplication;
+import com.hmmelton.courseback.CourseBackApplication;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -79,10 +79,10 @@ public class AddBookDialog extends DialogFragment {
         book.saveInBackground(e -> {
             if (e != null) {
                 Log.e(TAG, "error: ", e);
-                Toast.makeText(TextRackApplication.getInstance(),
+                Toast.makeText(CourseBackApplication.getInstance(),
                         R.string.book_failure, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(TextRackApplication.getInstance(),
+                Toast.makeText(CourseBackApplication.getInstance(),
                         R.string.book_saved, Toast.LENGTH_SHORT).show();
                 MainFragment.updateAdapter();
             }

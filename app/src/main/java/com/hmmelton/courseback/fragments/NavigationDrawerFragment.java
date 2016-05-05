@@ -22,7 +22,7 @@ import android.widget.ListView;
 
 import com.facebook.login.widget.ProfilePictureView;
 import com.hmmelton.courseback.R;
-import com.hmmelton.courseback.TextRackApplication;
+import com.hmmelton.courseback.CourseBackApplication;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -103,7 +103,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
         ProfilePictureView profilePic = (ProfilePictureView) mainView.findViewById(R.id.profilePic);
-        profilePic.setProfileId(TextRackApplication.getFacebookId());
+        profilePic.setProfileId(CourseBackApplication.getFacebookId());
 
         return mainView;
     }

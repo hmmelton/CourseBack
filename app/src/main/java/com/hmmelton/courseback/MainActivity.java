@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.hmmelton.courseback.fragments.MainFragment;
 import com.hmmelton.courseback.fragments.NavigationDrawerFragment;
-import com.hmmelton.courseback.utils.Authentication;
 
 
 public class MainActivity extends AppCompatActivity
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        Authentication.isUserSignedIn(this);
+        //Authentication.isUserSignedIn(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()

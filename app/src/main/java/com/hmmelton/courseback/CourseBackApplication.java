@@ -2,27 +2,28 @@ package com.hmmelton.courseback;
 
 import android.app.Application;
 
-import com.parse.Parse;
-import com.parse.ParseFacebookUtils;
+import com.firebase.client.Firebase;
 
 /**
  * Created by harrison on 7/12/15.
  */
-public class TextRackApplication extends Application {
+public class CourseBackApplication extends Application {
 
-    private static TextRackApplication instance;
+    private static CourseBackApplication instance;
     private static String fbId;
+    private static Firebase firebase;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
-        ParseFacebookUtils.initialize(this);
+        Firebase.setAndroidContext(this); // initialize Firebase
+        // connect to Firebase
+        firebase = new Firebase("https://courseback.firebaseio.com/");
 
         instance = this;
     }
 
-    public static TextRackApplication getInstance() {
+    public static CourseBackApplication getInstance() {
         return instance;
     }
 

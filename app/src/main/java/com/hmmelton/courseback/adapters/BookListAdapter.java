@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import com.hmmelton.courseback.R;
 import com.hmmelton.courseback.views.BookCellViewHolder;
-import com.parse.ParseObject;
 
 import java.util.List;
 
@@ -18,12 +17,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookCellViewHolder> {
 
     @SuppressWarnings("unused")
     private final String TAG = "BookListAdapter";
-
-    private List<ParseObject> bookList;
-
-    public BookListAdapter(List<ParseObject> bookList) {
-        this.bookList = bookList;
-    }
 
     @Override
     public BookCellViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,29 +29,28 @@ public class BookListAdapter extends RecyclerView.Adapter<BookCellViewHolder> {
 
     @Override
     public void onBindViewHolder(BookCellViewHolder holder, int position) {
-        ParseObject book = bookList.get(position);
-        holder.title.setText(book.getString("title"));
-        holder.course.setText(book.getString("course"));
-        holder.price.setText("$" + book.getString("price"));
+        // TODO: bind items to view holder
     }
 
     @Override
     public int getItemCount() {
-        return bookList.size();
+        // TODO: return actual size of list
+        return 0;
     }
 
     /**
      * This method clears the current list of books.
      */
     public void clear() {
-        bookList.clear();
+        // TODO: clear list
     }
 
     /**
      * This method adds all items in the parameter to the current list of books.
+     *
      * @param books books to be added to list
      */
-    public void addAll(List<ParseObject> books) {
-        bookList.addAll(books);
+    public void addAll(List<?> books) {
+        // TODO: add all books in passed list.  Also, change that question mark
     }
 }

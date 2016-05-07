@@ -3,6 +3,7 @@ package com.hmmelton.courseback;
 import android.app.Application;
 
 import com.firebase.client.Firebase;
+import com.hmmelton.courseback.models.User;
 
 /**
  * Created by harrison on 7/12/15.
@@ -14,6 +15,7 @@ public class CourseBackApplication extends Application {
     private static CourseBackApplication instance; // global context
     private static String fbId; // user's Facebook ID number
     private static Firebase firebase; // instance of database
+    private static User user;
 
     @Override
     public void onCreate() {
@@ -55,5 +57,20 @@ public class CourseBackApplication extends Application {
      */
     public static void setFacebookId(String id) {
         fbId = id;
+    }
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(String id, String name, String email) {
+        user = new User(id, name, email);
+    }
+
+    /**
+     * This method is used to log the user out of the application.
+     */
+    public static void clearUser() {
+        user = null;
     }
 }

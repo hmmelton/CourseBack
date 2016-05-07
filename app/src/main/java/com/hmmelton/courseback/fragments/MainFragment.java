@@ -16,9 +16,6 @@ import android.widget.ProgressBar;
 import com.hmmelton.courseback.R;
 import com.hmmelton.courseback.adapters.BookListAdapter;
 import com.hmmelton.courseback.utils.Authentication;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 /**
  * Created by harrison on 8/28/15.
@@ -90,8 +87,8 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 break;
             case R.id.action_logout:
                 mProgressBar.setVisibility(View.VISIBLE);
-                ParseUser.logOut();
-                Authentication.isUserSignedIn(getActivity());
+                Authentication.unauthorize(); // log user out
+                Authentication.isUserSignedIn(getActivity()); // takes user back to log in screen
                 break;
             case R.id.action_refresh:
                 setAdapter();
@@ -108,11 +105,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
      */
     private void setAdapter() {
         mProgressBar.setVisibility(View.VISIBLE);
-        ParseQuery<ParseObject> query = new ParseQuery<>("Book");
-        query.findInBackground(((objects, e) -> {
-            mContent.setAdapter(new BookListAdapter(objects));
-            mProgressBar.setVisibility(View.GONE);
-        }));
+        // TODO: query all books in database & set up adapter with them
     }
 
     /**
@@ -124,12 +117,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
         mProgressBar.setVisibility(View.VISIBLE);
         // query for new books
-        ParseQuery<ParseObject> query = new ParseQuery<>("Book");
-        query.findInBackground(((objects, e) -> {
-            adapter.clear();
-            adapter.addAll(objects);
-            adapter.notifyDataSetChanged();
-            mProgressBar.setVisibility(View.GONE);
-        }));
+        // TODO: query new books & update adapter
     }
 }

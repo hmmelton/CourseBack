@@ -7,16 +7,11 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.hmmelton.courseback.R;
-import com.hmmelton.courseback.CourseBackApplication;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 /**
  * Created by harrison on 7/12/15.
@@ -69,24 +64,7 @@ public class AddBookDialog extends DialogFragment {
 
         String price = getBookInfo(R.id.add_book_price);
 
-        ParseObject book = new ParseObject("Book");
-        book.put("title", title);
-        book.put("course", course);
-        book.put("isbn", isbn);
-        book.put("edition", edition);
-        book.put("price", price);
-        book.put("owner", ParseUser.getCurrentUser());
-        book.saveInBackground(e -> {
-            if (e != null) {
-                Log.e(TAG, "error: ", e);
-                Toast.makeText(CourseBackApplication.getInstance(),
-                        R.string.book_failure, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(CourseBackApplication.getInstance(),
-                        R.string.book_saved, Toast.LENGTH_SHORT).show();
-                MainFragment.updateAdapter();
-            }
-        });
+        // TODO: create and add book
     }
 
     /**

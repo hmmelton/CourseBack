@@ -4,6 +4,7 @@
 
     <!-- Resource Keys -->
     <string name="facebook_id">687480368056541</string>
+    <string name="firebase_secret">9JvNoIVqYs2fqJVgGWEfA3E8toHtsELUFBBaaIrO</string>
 
     <!-- Action Buttons -->
     <string name="action_settings">Settings</string>

@@ -6,6 +6,8 @@ import com.firebase.client.Firebase;
 
 /**
  * Created by harrison on 7/12/15.
+ * This Application file is used to store information that can be accessed by all of the app's
+ * files.
  */
 public class CourseBackApplication extends Application {
 

@@ -1,4 +1,4 @@
-package com.hmmelton.textrack.fragments;
+package com.hmmelton.courseback.fragments;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -20,7 +20,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.hmmelton.textrack.R;
+import com.facebook.login.widget.ProfilePictureView;
+import com.hmmelton.courseback.R;
+import com.hmmelton.courseback.CourseBackApplication;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -99,6 +101,10 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 getResources().getStringArray(R.array.nav_drawer_list)));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+
+        ProfilePictureView profilePic = (ProfilePictureView) mainView.findViewById(R.id.profilePic);
+        profilePic.setProfileId(CourseBackApplication.getFacebookId());
+
         return mainView;
     }
 

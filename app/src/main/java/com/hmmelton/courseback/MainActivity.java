@@ -1,13 +1,13 @@
-package com.hmmelton.textrack;
+package com.hmmelton.courseback;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
-import com.hmmelton.textrack.fragments.MainFragment;
-import com.hmmelton.textrack.fragments.NavigationDrawerFragment;
-import com.hmmelton.textrack.utils.Authentication;
+import com.hmmelton.courseback.fragments.MainFragment;
+import com.hmmelton.courseback.fragments.NavigationDrawerFragment;
+import com.hmmelton.courseback.utils.Authentication;
 
 
 public class MainActivity extends AppCompatActivity

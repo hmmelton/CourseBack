@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TextRack.iml" filepath="$PROJECT_DIR$/TextRack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CourseBack.iml" filepath="$PROJECT_DIR$/CourseBack.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -102,8 +102,9 @@ public class NavigationDrawerFragment extends Fragment {
                 getResources().getStringArray(R.array.nav_drawer_list)));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
+        // Set Facebook profile picture in NavDrawer
         ProfilePictureView profilePic = (ProfilePictureView) mainView.findViewById(R.id.profilePic);
-        profilePic.setProfileId(CourseBackApplication.getFacebookId());
+        profilePic.setProfileId(CourseBackApplication.getUser().getId());
 
         return mainView;
     }

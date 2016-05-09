@@ -56,7 +56,7 @@ public class AddBookDialog extends DialogFragment {
     private void addNewBook() {
         String title = getBookInfo(R.id.add_book_title);
 
-        String course = getBookInfo(R.id.add_book_course);
+        String course = getBookInfo(R.id.add_book_condition);
 
         String isbn = getBookInfo(R.id.add_book_isbn);
 

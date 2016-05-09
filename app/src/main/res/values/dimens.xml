@@ -7,7 +7,9 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
 
+    <!-- Custom font sizes -->
     <dimen name="book_cell_font_size">9pt</dimen>
+    <dimen name="add_book_label_size">8pt</dimen>
 
     <dimen name="button_padding">8dp</dimen>
 </resources>

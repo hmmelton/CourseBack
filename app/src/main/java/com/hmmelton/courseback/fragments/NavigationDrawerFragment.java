@@ -19,10 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.facebook.login.widget.ProfilePictureView;
-import com.hmmelton.courseback.R;
 import com.hmmelton.courseback.CourseBackApplication;
+import com.hmmelton.courseback.R;
+import com.hmmelton.courseback.models.User;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -102,9 +104,17 @@ public class NavigationDrawerFragment extends Fragment {
                 getResources().getStringArray(R.array.nav_drawer_list)));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
-        // Set Facebook profile picture in NavDrawer
-        ProfilePictureView profilePic = (ProfilePictureView) mainView.findViewById(R.id.profilePic);
-        profilePic.setProfileId(CourseBackApplication.getUser().getId());
+        User user = CourseBackApplication.getUser();
+        // Should only be null if user has not yet logged in
+        if (user != null) {
+            // Set username in NavDrawer
+            ((TextView) mainView.findViewById(R.id.profile_name))
+                    .setText(CourseBackApplication.getUser().getName());
+
+            // Set Facebook profile picture in NavDrawer
+            ProfilePictureView profilePic = (ProfilePictureView) mainView.findViewById(R.id.profile_pic);
+            profilePic.setProfileId(CourseBackApplication.getUser().getId());
+        }
 
         return mainView;
     }

@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/courseback_cream</item>
     </style>
 
     <style name="SignInTheme" parent="Theme.AppCompat.Light.NoActionBar">

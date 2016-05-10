@@ -75,7 +75,7 @@ public class AddBookDialog extends DialogFragment {
         User user = CourseBackApplication.getUser();
 
         Date date = new Date();
-        String id = user.getId() + date.getTime();
+        String id = user.getId() + date.getTime(); // unique ID for book
 
         //
         Map<String, Object> newBook = new HashMap<>();

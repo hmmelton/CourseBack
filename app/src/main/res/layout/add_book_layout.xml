@@ -14,7 +14,7 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/book_cell_font_size"
         android:gravity="center"
-        android:background="@color/green"/>
+        android:background="@color/courseback_purple"/>
 
     <EditText
         android:id="@+id/add_book_title"

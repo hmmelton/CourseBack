@@ -18,6 +18,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.firebase.client.Firebase;
 import com.hmmelton.courseback.models.User;
+import com.hmmelton.courseback.utils.Authentication;
 import com.hmmelton.courseback.utils.SignInTitleAnimation;
 
 import org.json.JSONException;
@@ -92,7 +93,7 @@ public class SignInActivity extends AppCompatActivity {
                                         String name = jsonObject.getString("name");
                                         String email = jsonObject.getString("email");
                                         // Sets global user
-                                        CourseBackApplication.setUser(id, name, email);
+                                        Authentication.setUser(id, name, email);
                                         logIn();
                                     } catch (JSONException e) {
                                         Log.e(TAG, e.toString());

@@ -52,19 +52,10 @@ public class CourseBackApplication extends Application {
     }
 
     /**
-     * This method
-     * @param id
-     * @param name
-     * @param email
+     * This method sets the application's global User object.
+     * @param newUser User object being set
      */
-    public static void setUser(String id, String name, String email) {
-        user = new User(id, name, email);
-    }
-
-    /**
-     * This method is used to log the user out of the application.
-     */
-    public static void clearUser() {
-        user = null;
+    public static void setUser(User newUser) {
+        user = newUser;
     }
 }

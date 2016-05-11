@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Theme colors (sort of) -->
     <color name="courseback_purple">#a782bf</color>
     <color name="courseback_cream">#fae3c6</color>
+    <color name="courseback_bg">#cccccc</color>
 
     <color name="green">#4CAF50</color>
     <color name="facebook_blue">#3b5998</color>

@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Authentication.isUserSignedIn(this);
+
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -33,7 +35,6 @@ public class MainActivity extends AppCompatActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        Authentication.isUserSignedIn(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()

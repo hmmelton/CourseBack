@@ -3,18 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <View
-        android:id="@+id/bg_image"
-        android:background="@color/action_bar"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"/>
-
     <RelativeLayout
         android:id="@+id/book_cell_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/bg_image">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/book_cell_top_row"
@@ -22,7 +14,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:background="@color/semi_black">
+            android:background="@color/courseback_bg">
             <TextView
                 android:id="@+id/book_cell_title"
                 android:layout_width="0dp"

@@ -16,13 +16,14 @@ import com.hmmelton.courseback.models.User;
 public class Authentication {
 
     // Used to store user login information after app has been exited
-    private static final String PREFS_FILE = "UserPreferences";
     private static final String USER_ID = "com.courseback.user_id";
     private static final String USER_NAME = "com.courseback.user_name";
     private static final String USER_EMAIL = "com.courseback.user_email";
 
     private static final Context CONTEXT =
             CourseBackApplication.getInstance().getApplicationContext();
+    private static final SharedPreferences PREFS =
+            CONTEXT.getSharedPreferences("UserPreferences", 0);
 
     private static final String TAG = "Authentication.java";
 
@@ -37,6 +38,14 @@ public class Authentication {
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(intent);
             activity.finish(); // prevents user from skipping login by hitting "back" button
+        } else {
+            // Get user login info from local storage
+            String id = PREFS.getString(USER_ID, null);
+            String name = PREFS.getString(USER_NAME, null);
+            String email = PREFS.getString(USER_EMAIL, null);
+
+            // Set user
+            CourseBackApplication.setUser(new User(id, name, email));
         }
 
     }
@@ -60,8 +69,7 @@ public class Authentication {
         // storage each time the app needs user info.
         CourseBackApplication.setUser(new User(id, name, email));
 
-        SharedPreferences preferences = CONTEXT.getSharedPreferences(PREFS_FILE, 0);
-        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences.Editor editor = PREFS.edit();
 
         // Set all the user's login info
         editor.putString(USER_ID, id);
@@ -73,11 +81,10 @@ public class Authentication {
     }
 
     private static boolean areCredentialsStored() {
-        SharedPreferences preferences = CONTEXT.getSharedPreferences(PREFS_FILE, 0);
 
-        String id = preferences.getString(USER_ID, null);
-        String name = preferences.getString(USER_NAME, null);
-        String email = preferences.getString(USER_EMAIL, null);
+        String id = PREFS.getString(USER_ID, null);
+        String name = PREFS.getString(USER_NAME, null);
+        String email = PREFS.getString(USER_EMAIL, null);
 
         if (id == null || name == null || email == null) {
             // User has missing or incomplete credentials

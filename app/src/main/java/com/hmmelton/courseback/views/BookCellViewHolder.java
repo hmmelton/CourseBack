@@ -13,14 +13,12 @@ public class BookCellViewHolder extends RecyclerView.ViewHolder {
 
     public TextView title;
     public TextView price;
-    public TextView course;
-    public View image;
+    public TextView edition;
 
     public BookCellViewHolder(View v) {
         super(v);
         title = (TextView) v.findViewById(R.id.book_cell_title);
         price = (TextView) v.findViewById(R.id.book_cell_price);
-        course = (TextView) v.findViewById(R.id.book_cell_edition);
-        image = v.findViewById(R.id.bg_image);
+        edition = (TextView) v.findViewById(R.id.book_cell_edition);
     }
 }

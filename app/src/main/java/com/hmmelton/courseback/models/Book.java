@@ -16,7 +16,8 @@ public class Book {
     private String annotations;
     private String userId;
     private Date dateAdded;
-    private String bookId;
+    private String id;
+    private String price;
 
     /**
      * This constructor is called when adding a new book to the database.
@@ -35,7 +36,8 @@ public class Book {
         annotations = (String) info.get("annotations");
         userId = (String) info.get("userId");
         dateAdded = (Date) info.get("dateAdded");
-        bookId = (String) info.get("id");
+        id = (String) info.get("id");
+        price = (String) info.get("price");
     }
 
     /**
@@ -154,16 +156,32 @@ public class Book {
      * This method gets the book's ID number.
      * @return book's ID number
      */
-    public String getBookId() {
-        return bookId;
+    public String getId() {
+        return id;
     }
 
     /**
      * This method sets the book's ID number.
-     * @param bookId book's ID number
+     * @param id book's ID number
      */
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * This method gets the book's price.
+     * @return book's price
+     */
+    public String getPrice() {
+        return price;
+    }
+
+    /**
+     * This method sets the book's price.
+     * @param price book's price
+     */
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     /**
@@ -179,7 +197,8 @@ public class Book {
         info.put("annotations", annotations);
         info.put("userId", userId);
         info.put("dateAdded", dateAdded);
-        info.put("id", bookId);
+        info.put("id", id);
+        info.put("price", price);
 
         return info;
     }

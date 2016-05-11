@@ -3,6 +3,9 @@ package com.hmmelton.courseback.fragments;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -11,6 +14,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,10 +23,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.facebook.login.widget.ProfilePictureView;
-import com.hmmelton.courseback.R;
 import com.hmmelton.courseback.CourseBackApplication;
+import com.hmmelton.courseback.R;
+import com.hmmelton.courseback.models.User;
+
+import java.net.URL;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -51,6 +63,8 @@ public class NavigationDrawerFragment extends Fragment {
      * Helper component that ties the action bar to the navigation drawer.
      */
     private ActionBarDrawerToggle mDrawerToggle;
+
+    private final String TAG = getClass().getSimpleName();
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
@@ -102,8 +116,7 @@ public class NavigationDrawerFragment extends Fragment {
                 getResources().getStringArray(R.array.nav_drawer_list)));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
-        ProfilePictureView profilePic = (ProfilePictureView) mainView.findViewById(R.id.profilePic);
-        profilePic.setProfileId(CourseBackApplication.getFacebookId());
+        setFacebookProfilePic(mainView);
 
         return mainView;
     }
@@ -271,5 +284,59 @@ public class NavigationDrawerFragment extends Fragment {
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+    }
+
+    /**
+     * This method retrieves the user's Facebook profile picture.
+     * @return Bitmap of user's Facebook profile picture
+     */
+    private void setFacebookProfilePic(View mainView) {
+        User user = CourseBackApplication.getUser();
+
+        TextView name = (TextView) mainView.findViewById(R.id.profile_name);
+        CircleImageView profilePic = (CircleImageView) mainView.findViewById(R.id.profile_pic);
+
+        new AsyncTask<View, Void, byte[]>() {
+            @Override
+            protected byte[] doInBackground(View... params) {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+
+                    URL imageUrl =
+                            new URL("https://graph.facebook.com/" + user.getId() + "/picture?type=large");
+                    Request request = new Request.Builder()
+                            .url(imageUrl)
+                            .build();
+
+                    Response response = client.newCall(request).execute();
+                    return response.body().bytes();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(byte[] responseBytes) {
+                super.onPostExecute(responseBytes);
+                try {
+                    User user = CourseBackApplication.getUser();
+                    // Should only be null if user has not yet logged in
+                    if (user != null) {
+                        // Set username in NavDrawer
+                        name.setText(CourseBackApplication.getUser().getName());
+
+                        // Set Facebook profile picture in NavDrawer
+                        Bitmap bitmap =
+                                BitmapFactory.decodeByteArray(responseBytes, 0, responseBytes.length);
+                        profilePic.setImageBitmap(bitmap);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "oops!!", e);
+                }
+            }
+        }.execute(mainView);
+
     }
 }

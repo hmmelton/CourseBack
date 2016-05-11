@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- This is the dialog's header -->
     <TextView
         android:id="@+id/add_book_header"
         android:layout_width="match_parent"
@@ -13,51 +14,61 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/book_cell_font_size"
         android:gravity="center"
-        android:background="@color/green"/>
+        android:background="@color/courseback_purple"/>
 
     <EditText
         android:id="@+id/add_book_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/AddBookInput"
         android:layout_below="@id/add_book_header"
         android:hint="@string/title"
-        android:inputType="textCapWords"
-        android:paddingLeft="@dimen/activity_horizontal_margin"/>
+        android:inputType="textCapWords"/>
 
     <EditText
         android:id="@+id/add_book_isbn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/AddBookInput"
         android:layout_below="@id/add_book_title"
         android:inputType="number"
-        android:hint="@string/isbn"
-        android:paddingLeft="@dimen/activity_horizontal_margin"/>
+        android:hint="@string/isbn"/>
 
     <EditText
         android:id="@+id/add_book_edition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/AddBookInput"
         android:layout_below="@id/add_book_isbn"
         android:inputType="number"
-        android:hint="@string/edition"
-        android:paddingLeft="@dimen/activity_horizontal_margin"/>
-
-    <EditText
-        android:id="@+id/add_book_course"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/add_book_edition"
-        android:inputType="textCapWords"
-        android:hint="@string/course"
-        android:paddingLeft="@dimen/activity_horizontal_margin"/>
+        android:hint="@string/edition"/>
 
     <EditText
         android:id="@+id/add_book_price"
+        style="@style/AddBookInput"
+        android:layout_below="@id/add_book_edition"
+        android:inputType="numberDecimal"
+        android:hint="@string/price" />
+
+    <TextView
+        android:id="@+id/add_book_condition_lbl"
+        style="@style/AddBookInput"
+        android:layout_below="@id/add_book_price"
+        android:text="@string/condition"
+        android:textSize="@dimen/add_book_label_size"/>
+
+    <Spinner
+        android:id="@+id/add_book_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_book_course"
-        android:inputType="numberDecimal"
-        android:hint="@string/price"
-        android:paddingLeft="@dimen/activity_horizontal_margin"/>
+        android:layout_below="@id/add_book_condition_lbl"/>
+
+    <TextView
+        android:id="@+id/add_book_annotation_lbl"
+        style="@style/AddBookInput"
+        android:layout_below="@id/add_book_condition"
+        android:text="@string/annotation"
+        android:textSize="@dimen/add_book_label_size"/>
+
+    <Spinner
+        android:id="@+id/add_book_annotations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_book_annotation_lbl"/>
+
 
 </RelativeLayout>

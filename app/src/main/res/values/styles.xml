@@ -3,10 +3,18 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/courseback_cream</item>
     </style>
 
     <style name="SignInTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
+    </style>
+
+    <!-- This style is used for inputs views in the AddBook dialog -->
+    <style name="AddBookInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
     </style>
 
 </resources>

@@ -103,9 +103,11 @@ public class MainFragment extends android.support.v4.app.Fragment {
     /**
      * This method sets the adapter for the View containing books available for sale.
      */
+    @SuppressWarnings("unchecked")
     private void setAdapter() {
         mProgressBar.setVisibility(View.VISIBLE);
         // TODO: query all books in database & set up adapter with them
+
     }
 
     /**

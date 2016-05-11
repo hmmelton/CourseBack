@@ -44,25 +44,19 @@ public class CourseBackApplication extends Application {
     }
 
     /**
-     * This method returns the user's Facebook ID number.
-     * @return Facebook ID number
+     * This method returns the global User object, which represents the current user.
+     * @return currently instantiated User object
      */
-    public static String getFacebookId() {
-        return fbId;
-    }
-
-    /**
-     * This method sets the user's Facebook ID number for future reference.
-     * @param id user's Facebook ID number
-     */
-    public static void setFacebookId(String id) {
-        fbId = id;
-    }
-
     public static User getUser() {
         return user;
     }
 
+    /**
+     * This method
+     * @param id
+     * @param name
+     * @param email
+     */
     public static void setUser(String id, String name, String email) {
         user = new User(id, name, email);
     }
